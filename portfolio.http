@@ -1,1 +1,28 @@
-GET http://localhost:5293
+GET http://localhost:5293/songs
+
+###
+GET http://localhost:5293/songs/4
+
+###
+POST http://localhost:5293/songs
+Content-Type: application/json
+
+{
+    "name": "Mmhmm",
+    "Genre": "Rap",
+    "Artist": "BigXThePlug"
+}
+
+###
+PUT http://localhost:5293/songs/4
+Content-Type: application/json
+
+{
+    "name": "People Like Us",
+    "Genre": "Christian & Gospel",
+    "Artist": "Micah Tyler"
+}
+
+###
+DELETE http://localhost:5293/songs/4
+Content
