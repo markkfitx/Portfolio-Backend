@@ -1,4 +1,5 @@
 using System.Reflection.Metadata.Ecma335;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.VisualBasic;
 using PortfolioBackend.Api.Dtos;
 using PortfolioBackend.Apis.Dtos;
@@ -31,7 +32,7 @@ public static class MusicEndpoints
     public static RouteGroupBuilder MapMusicEndpoints(this WebApplication app)
     {
         // The group is used to replace the /songs/ group declaration in each Endpoint.
-        var group = app.MapGroup("songs");
+        var group = app.MapGroup("songs").WithParameterValidation();
         // GET /songs
         group.MapGet("/", () => songs);
 
@@ -47,6 +48,7 @@ public static class MusicEndpoints
         // POST /songs/
         group.MapPost("/", (CreateSongDto newSong) =>
         {
+
             MusicDto song = new(
                 songs.Count + 1,
                 newSong.Name,

@@ -27,3 +27,5 @@
 /Users/mark/DOTNET/PortfolioBackend/obj/Debug/net9.0/PortfolioBackend.pdb
 /Users/mark/DOTNET/PortfolioBackend/obj/Debug/net9.0/PortfolioBackend.genruntimeconfig.cache
 /Users/mark/DOTNET/PortfolioBackend/obj/Debug/net9.0/ref/PortfolioBackend.dll
+/Users/mark/DOTNET/PortfolioBackend/bin/Debug/net9.0/MinimalApis.Extensions.dll
+/Users/mark/DOTNET/PortfolioBackend/bin/Debug/net9.0/MiniValidation.dll
