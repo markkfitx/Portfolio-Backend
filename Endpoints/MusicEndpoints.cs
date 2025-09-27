@@ -1,4 +1,5 @@
 using System.Reflection.Metadata.Ecma335;
+using Microsoft.VisualBasic;
 using PortfolioBackend.Api.Dtos;
 using PortfolioBackend.Apis.Dtos;
 
@@ -27,13 +28,15 @@ public static class MusicEndpoints
             "Illenium"
         )
     ];
-    public static WebApplication MapMusicEndpoints(this WebApplication app)
+    public static RouteGroupBuilder MapMusicEndpoints(this WebApplication app)
     {
+        // The group is used to replace the /songs/ group declaration in each Endpoint.
+        var group = app.MapGroup("songs");
         // GET /songs
-        app.MapGet("songs", () => songs);
+        group.MapGet("/", () => songs);
 
         // GET /songs/1
-        app.MapGet("songs/{id}", (int id) =>
+        group.MapGet("/{id}", (int id) =>
         {
             // Either recieve a song or null
             MusicDto? song = songs.Find(song => song.Id == id);
@@ -42,7 +45,7 @@ public static class MusicEndpoints
         .WithName(GetSongEndpoitName);
 
         // POST /songs/
-        app.MapPost("songs", (CreateSongDto newSong) =>
+        group.MapPost("/", (CreateSongDto newSong) =>
         {
             MusicDto song = new(
                 songs.Count + 1,
@@ -56,7 +59,7 @@ public static class MusicEndpoints
         });
 
         // PUT /songs/
-        app.MapPut("songs/{id}", (int id, UpdateSongsDto updateSong) =>
+        group.MapPut("/{id}", (int id, UpdateSongsDto updateSong) =>
         {
             var index = songs.FindIndex(song => song.Id == id);
             if (index == -1)
@@ -75,12 +78,12 @@ public static class MusicEndpoints
 
         // DELETE /songs/
 
-        app.MapDelete("songs/{id}", (int id) =>
+        group.MapDelete("/{id}", (int id) =>
         {
             songs.RemoveAll(song => song.Id == id);
             return Results.NoContent();
         });
 
-        return app;
+        return group;
     }
 }
