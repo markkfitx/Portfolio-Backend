@@ -15,5 +15,7 @@ builder.Services.AddOpenApi();
 var app = builder.Build();
 
 app.MapMusicEndpoints();
+// Update the Database on startup automatically
+app.MigrateDB();
 app.Run();
 
